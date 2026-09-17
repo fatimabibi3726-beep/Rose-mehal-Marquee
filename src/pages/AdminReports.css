@@ -1,0 +1,14 @@
+.report-controls { display: flex; align-items: flex-end; gap: 16px; }
+.report-controls .field { margin-bottom: 0; }
+.report-controls select { min-width: 200px; }
+
+.report-chart { display: flex; flex-direction: column; gap: 14px; }
+.bar-row { display: grid; grid-template-columns: 110px 1fr 90px; align-items: center; gap: 12px; }
+.bar-label { font-size: 13px; font-weight: 600; color: rgba(36,26,29,0.7); }
+.bar-track { height: 14px; background: rgba(122,46,59,0.1); border-radius: 8px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--rose); border-radius: 8px; }
+.bar-value { font-size: 13px; font-weight: 600; text-align: right; }
+
+@media (max-width: 860px) {
+  .report-controls { flex-wrap: wrap; }
+}

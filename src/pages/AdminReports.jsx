@@ -1,0 +1,144 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import './AdminUsers.css'
+import './AdminReports.css'
+
+// TODO: replace with real data from Supabase (aggregated from bookings/payments/food/decorations)
+const REPORT_TYPES = ['Booking Report', 'Revenue Report', 'Service Usage Report']
+const FILTERS = ['daily', 'weekly', 'monthly']
+
+const SAMPLE_RESULTS = {
+  'Booking Report': {
+    rows: [
+      { label: 'Confirmed', value: 18 },
+      { label: 'Pending', value: 6 },
+      { label: 'Cancelled', value: 3 },
+    ],
+    unit: 'bookings',
+  },
+  'Revenue Report': {
+    rows: [
+      { label: 'Week 1', value: 320000 },
+      { label: 'Week 2', value: 410000 },
+      { label: 'Week 3', value: 280000 },
+      { label: 'Week 4', value: 505000 },
+    ],
+    unit: 'Rs.',
+  },
+  'Service Usage Report': {
+    rows: [
+      { label: 'Royal Feast', value: 12 },
+      { label: 'Classic Menu', value: 9 },
+      { label: 'Light Bites', value: 5 },
+      { label: 'Modern Décor', value: 7 },
+    ],
+    unit: 'bookings',
+  },
+}
+
+// TODO: replace with real data from Supabase (reports table)
+const SEED_HISTORY = [
+  { id: 1, type: 'Revenue Report', filter: 'monthly', generatedBy: 'Admin', date: '01 Mar 2026' },
+  { id: 2, type: 'Booking Report', filter: 'weekly', generatedBy: 'Admin', date: '24 Feb 2026' },
+]
+
+export default function AdminReports() {
+  const [type, setType] = useState(REPORT_TYPES[0])
+  const [filter, setFilter] = useState('weekly')
+  const [result, setResult] = useState(null)
+  const [history, setHistory] = useState(SEED_HISTORY)
+
+  function generate() {
+    // TODO: POST /api/reports/generate { type, filter } once backend is ready
+    setResult(SAMPLE_RESULTS[type])
+    setHistory((prev) => [
+      { id: Date.now(), type, filter, generatedBy: 'Admin', date: 'Just now' },
+      ...prev,
+    ])
+  }
+
+  const maxValue = result ? Math.max(...result.rows.map((r) => r.value)) : 0
+
+  return (
+    <div className="admin-page">
+      <aside className="admin-sidebar">
+        <div className="logo">Rose <em>Mehal</em></div>
+        <div className="role-tag">ADMIN DASHBOARD</div>
+        <nav>
+          <Link to="/admin" className="link">Overview</Link>
+          <div className="group-label">Manage</div>
+          <Link to="/admin/users" className="link">Users</Link>
+          <Link to="/admin/bookings" className="link">Bookings</Link>
+          <Link to="/admin/food" className="link">Food Menu</Link>
+          <Link to="/admin/decorations" className="link">Decorations</Link>
+          <Link to="/admin/payments" className="link">Payments</Link>
+          <div className="group-label">Insights</div>
+          <span className="link active">Reports</span>
+          <Link to="/admin/notifications" className="link">Notifications</Link>
+          <Link to="/admin/settings" className="link">Settings</Link>
+        </nav>
+      </aside>
+
+      <main className="admin-main">
+        <div className="admin-topbar">
+          <div>
+            <h1>Reports</h1>
+            <div className="subtitle">Generate and review booking, revenue, and service-usage reports.</div>
+          </div>
+        </div>
+
+        <div className="report-controls">
+          <div className="field">
+            <label>Report type</label>
+            <select value={type} onChange={(e) => setType(e.target.value)}>
+              {REPORT_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label>Range</label>
+            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+              {FILTERS.map((f) => <option key={f} value={f}>{f[0].toUpperCase() + f.slice(1)}</option>)}
+            </select>
+          </div>
+          <button className="btn-new" onClick={generate}>Generate report</button>
+        </div>
+
+        {result && (
+          <div className="cb-card" style={{ marginTop: 24, maxWidth: 640 }}>
+            <div className="section-title" style={{ marginTop: 0 }}>{type} — {filter}</div>
+            <div className="report-chart">
+              {result.rows.map((r) => (
+                <div className="bar-row" key={r.label}>
+                  <span className="bar-label">{r.label}</span>
+                  <div className="bar-track">
+                    <div className="bar-fill" style={{ width: `${(r.value / maxValue) * 100}%` }} />
+                  </div>
+                  <span className="bar-value">
+                    {result.unit === 'Rs.' ? `Rs. ${r.value.toLocaleString()}` : r.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="section-title">Previously generated reports</div>
+        <table className="booking-table">
+          <thead>
+            <tr><th>Type</th><th>Range</th><th>Generated by</th><th>Date</th></tr>
+          </thead>
+          <tbody>
+            {history.map((h) => (
+              <tr key={h.id}>
+                <td>{h.type}</td>
+                <td className="capitalize">{h.filter}</td>
+                <td>{h.generatedBy}</td>
+                <td>{h.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </main>
+    </div>
+  )
+}

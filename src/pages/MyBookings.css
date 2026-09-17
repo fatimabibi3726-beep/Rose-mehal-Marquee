@@ -1,0 +1,26 @@
+.clickable-row { cursor: pointer; }
+.clickable-row:hover { background: rgba(122,46,59,0.04); }
+
+.badge-cancelled { background: rgba(166,66,58,0.12); color: var(--red); }
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(36,26,29,0.45);
+  display: flex; align-items: center; justify-content: center; z-index: 50;
+}
+.modal {
+  background: var(--white); border-radius: 8px; padding: 32px;
+  width: 100%; max-width: 460px; max-height: 86vh; overflow-y: auto;
+}
+.modal-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.modal-head h2 { font-size: 21px; font-weight: 600; }
+.modal-close {
+  background: none; border: none; font-size: 24px; line-height: 1; color: rgba(36,26,29,0.5);
+  padding: 0 4px;
+}
+
+.confirm-modal p { font-size: 14.5px; color: rgba(36,26,29,0.7); margin: 12px 0 22px; }
+
+.btn-danger {
+  padding: 12px 20px; background: var(--red); color: var(--white); border: none;
+  border-radius: 5px; font-size: 14px; font-weight: 600; margin-top: 22px;
+}

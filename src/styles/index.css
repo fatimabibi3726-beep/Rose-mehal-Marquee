@@ -1,0 +1,38 @@
+:root {
+  --rose: #7A2E3B;
+  --rose-deep: #5C2029;
+  --gold: #C9A227;
+  --gold-soft: #E4C766;
+  --ivory: #F3E9DC;
+  --charcoal: #241A1D;
+  --blush: #E3B7B0;
+  --white: #FFFDF9;
+  --green: #3F7A4E;
+  --amber: #B8860B;
+  --red: #A6423A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--charcoal);
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+}

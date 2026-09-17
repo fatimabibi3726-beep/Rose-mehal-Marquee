@@ -1,0 +1,18 @@
+.notif-list { display: flex; flex-direction: column; gap: 10px; max-width: 680px; }
+.notif-row {
+  display: flex; align-items: flex-start; gap: 14px; width: 100%; text-align: left;
+  background: var(--white); border: 1px solid rgba(36,26,29,0.08); border-radius: 8px;
+  padding: 16px 18px;
+}
+.notif-row.unread { border-color: rgba(122,46,59,0.25); background: rgba(122,46,59,0.04); }
+.notif-row .dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.dot-payment { background: var(--green); }
+.dot-booking { background: var(--rose); }
+.dot-general { background: var(--amber); }
+.notif-body { flex: 1; }
+.notif-msg { font-size: 14.5px; line-height: 1.5; margin-bottom: 4px; }
+.notif-date { font-size: 12.5px; color: rgba(36,26,29,0.45); }
+.notif-new {
+  font-size: 11px; font-weight: 700; color: var(--rose-deep); background: var(--blush);
+  padding: 3px 8px; border-radius: 3px; flex-shrink: 0; margin-top: 2px;
+}

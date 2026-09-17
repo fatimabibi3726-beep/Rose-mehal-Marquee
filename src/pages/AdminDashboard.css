@@ -1,0 +1,48 @@
+.admin-page { display: flex; min-height: 100vh; background: var(--ivory); }
+
+.admin-sidebar { width: 224px; background: var(--charcoal); color: var(--white); padding: 28px 20px; flex-shrink: 0; }
+.admin-sidebar .logo { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 600; margin-bottom: 6px; }
+.admin-sidebar .logo em { font-style: italic; font-weight: 400; color: var(--gold-soft); }
+.admin-sidebar .role-tag { font-size: 11.5px; color: rgba(255,253,249,0.45); margin-bottom: 32px; letter-spacing: 0.4px; }
+.admin-sidebar nav .link {
+  display: block; padding: 10px 14px; border-radius: 5px; font-size: 14px;
+  font-weight: 500; margin-bottom: 2px; color: rgba(255,253,249,0.7); cursor: pointer;
+}
+.admin-sidebar nav .link.active { background: var(--rose); color: var(--white); }
+.admin-sidebar .group-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,253,249,0.35); margin: 20px 0 8px 14px; }
+
+.admin-main { flex: 1; padding: 32px 40px; }
+.admin-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+.admin-topbar h1 { font-size: 24px; font-weight: 600; }
+.admin-topbar .subtitle { font-size: 13.5px; color: rgba(36,26,29,0.6); margin-top: 4px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 32px; }
+.kpi-card { background: var(--white); border-radius: 8px; padding: 20px; }
+.kpi-card .label { font-size: 12.5px; color: rgba(36,26,29,0.6); margin-bottom: 8px; }
+.kpi-card .value { font-size: 26px; font-weight: 600; font-family: 'Fraunces', serif; }
+.kpi-card .delta { font-size: 12.5px; margin-top: 6px; font-weight: 600; }
+.delta-up { color: var(--green); }
+.delta-down { color: var(--red); }
+
+.grid-2 { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+.panel { background: var(--white); border-radius: 8px; padding: 24px; }
+.panel-title { font-size: 16px; font-weight: 600; margin-bottom: 18px; }
+
+.booking-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(36,26,29,0.06); font-size: 14px; }
+.booking-row:last-child { border-bottom: none; }
+.booking-row .name { font-weight: 600; }
+.booking-row .date { color: rgba(36,26,29,0.55); font-size: 13px; }
+
+.badge { display: inline-block; padding: 4px 11px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+.badge-pending { background: rgba(184,134,11,0.14); color: var(--amber); }
+.badge-confirmed { background: rgba(63,122,78,0.14); color: var(--green); }
+
+.alert-row { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(36,26,29,0.06); font-size: 13.5px; }
+.alert-row:last-child { border-bottom: none; }
+.alert-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); margin-top: 5px; flex-shrink: 0; }
+
+@media (max-width: 960px) {
+  .admin-sidebar { display: none; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .grid-2 { grid-template-columns: 1fr; }
+}
